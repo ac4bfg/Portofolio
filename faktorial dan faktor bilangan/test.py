@@ -1,66 +1,17 @@
-
-
 import os
 from time import sleep
 
 clear = lambda: os.system('cls')
 
-def cek_input():
-  counter = 3
-  cek = False
-
-  while not cek:
-    clear()
-    counter -= 1
-    n = input('Masukkan nilai faktorial: ')
-
-    try:
-        val = int(n)
-        cek = True
-        return val
-
-    except ValueError:
-
-        if counter == 0:
-          return 'Anda sudah melakukan 3x percobaan harap coba beberapa saat lagi'
-
-        print('Masukkan input angka')
-        sleep(3)
-
 def faktorial(n):
-
   if n > 2:
     return n * faktorial(n - 1)
   elif n == 1 or n == 0 :
     return 1
-  else:
+  elif n < 0:
     return 'tak terdefinisi'
 
-int_nilai = cek_input()
-nilai = faktorial(int_nilai)
-print(f'Hasil dari {int_nilai}! = {nilai}')
-
-def cek_input():
-  counter = 3
-  cek = False
-
-  while not cek:
-    clear()
-    counter -= 1
-    n = input('Masukkan bilangan: ')
-    
-    try:
-        val = int(n)
-        cek = True
-        return val
-
-    except ValueError:
-
-        if counter == 0:
-          return 'Anda sudah melakukan 3x percobaan harap coba beberapa saat lagi'
-
-        print('Masukkan input angka')
-        sleep(3)
+  return 2
 
 def faktor(n):
   faktor = []
@@ -70,6 +21,56 @@ def faktor(n):
           faktor.append(i)
   return faktor[0:]
 
-int_nilai = cek_input()
-nilai = faktor(int_nilai)
-print(f'Faktor dari {int_nilai} = {nilai}')
+os.system('cls')
+str_jenis_input = '''Program pencarian faktor bilangan & faktorial
+
+Pilih jenis pencarian :
+1. Faktor bilangan
+2. Faktorial
+
+Masukkan input = '''
+
+jenis_input = input(str_jenis_input)
+
+if jenis_input == '1':
+    os.system('cls')
+    for x in range(3):
+      bilangan = input('Masukkan bilangan = ')
+      try:
+          bilangan = int(bilangan)
+          break
+      except ValueError:
+          print('input bilangan harus berupa angka')
+          sleep(3)
+          os.system('cls')
+    
+    if x >= 2:
+      print('teralu banyak percobaan input harap ulangi beberapa saat lagi')
+      exit()
+    else:
+      nilai = faktor(bilangan)
+      print(f'Faktor dari {bilangan} = {nilai}')
+    
+elif jenis_input == '2':
+    os.system('cls')
+
+    for x in range(3):
+      bilangan = input('Masukkan nilai faktorial = ')
+
+      try:
+        bilangan = int(bilangan)
+        break
+
+      except ValueError:
+        print('input bilangan harus berupa angka')
+        sleep(3)
+        os.system('cls')
+    
+    if x >= 2:
+      print('teralu banyak percobaan input harap ulangi beberapa saat lagi')
+      exit()
+    else:
+      nilai = faktorial(bilangan)
+      print(f'Hasil dari {bilangan}! = {nilai}')
+else:
+    print('input tidak tersedia')
